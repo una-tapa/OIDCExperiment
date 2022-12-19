@@ -63,8 +63,17 @@ But I do see my Bell Custom User Registry `com.ibm.ws.samples.cur.FileRegistrySa
 	at java.security.AccessController.doPrivileged(Native Method)
 	at javax.security.auth.login.LoginContext.invokePriv(LoginContext.java:680)
 	at javax.security.auth.login.LoginContext.login(LoginContext.java:587)
-    ```
+  ```
+
+The following is the login panel for bell 
+
      ![Tux, the Linux mascot](/images/belllogin.png)
+
+## trace files
+I uploaded the trace files in the following location. They are too big to see on the github. They need to be downloaded. 
+* OP/trace.log
+* RP/trace.log
+* RPBell/trace.log 
 
 
 ## Bells custom user registry 
