@@ -66,7 +66,6 @@ But I do see my Bell Custom User Registry `com.ibm.ws.samples.cur.FileRegistrySa
   ```
 
 The following is the login panel for bell 
-
      ![Tux, the Linux mascot](/images/belllogin.png)
 
 ## trace files
