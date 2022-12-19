@@ -1,0 +1,58 @@
+<server description="Sample Liberty server">
+    <!-- tag::features[] -->
+    <featureManager>
+        <feature>jsp-2.2</feature>
+        <feature>openidConnectServer-1.0</feature>
+        <feature>transportSecurity-1.0</feature>
+        <feature>appSecurity-2.0</feature>
+        <feature>servlet-3.1</feature>
+    </featureManager>
+    <!-- end::features[] -->
+
+    <variable name="default.http.port" defaultValue="9080"/>
+    <variable name="default.https.port" defaultValue="9443"/>
+
+    <!-- tag::webApplication[] -->
+    <!-- webApplication location="guide-getting-started.war" contextRoot="/dev" /-->
+
+    <!-- end::webApplication[] -->    
+    <!-- mpMetrics authentication="false"/ -->
+
+<!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+        <httpEndpoint id="defaultHttpEndpoint"
+        host="*" 
+        httpPort="9080"
+        httpsPort="9443" />
+
+<!--keyStore id="defaultKeyStore" password="keyspass"/-->
+
+<basicRegistry id="basic" realm="OpBasicRealm">
+<user name="oidcuser" password="oidcuserpwd"/>
+<user name="oidcuser1" password="security"/>
+<user name="oidcuser2" password="security"/>
+</basicRegistry>
+
+<openidConnectProvider id="OP" oauthProviderRef="Oauth" ></openidConnectProvider>   
+
+<oauthProvider id="Oauth"  >
+<localStore>            
+  <client name="rp" secret="{xor}LDo8LTor"
+      displayname="rp"
+      redirect="https://172.23.96.138:19443/oidcclient/redirect/RP"
+      scope="openid profile scope1 email phone address"
+      enabled="true"/>            
+</localStore>
+</oauthProvider>
+
+<oauth-roles>
+<authenticated>
+  <special-subject type="ALL_AUTHENTICATED_USERS" />  
+</authenticated>
+</oauth-roles>
+
+    <!-- tag::logging[] -->
+    <logging traceSpecification="*=info:com.ibm.ws.logging.trace.specification=*=info:com.ibm.ws.classloading.bells.internal.Bell=debug:com.ibm.ws.security.*=all:com.ibm.ws.webcontainer.security.*=all" />
+    <!-- end::logging[] -->
+
+ 
+</server>
